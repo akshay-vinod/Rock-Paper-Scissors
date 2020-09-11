@@ -44,7 +44,8 @@ section {
   font-size: 40px;
 }
 .intro button,
-.options button {
+.options button,
+.newgame button {
   border: none;
   background: none;
   font-size: 20px;
@@ -75,6 +76,11 @@ section {
 }
 .player-hand {
   transform: rotateY(180deg);
+}
+.newgame {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 /* The Modal (background) */
 .modal {
@@ -172,5 +178,6 @@ div.fadeOut {
   pointer-events: none;
 }
 div.avoid-clicks {
+  opacity: 0;
   pointer-events: none;
 }
