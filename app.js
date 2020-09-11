@@ -10,6 +10,7 @@ const game = () => {
             intro.classList.add("fadeOut");
             match.classList.remove("fadeOut");
         });
+
     };
     //start match
     const playmatch = () => {
@@ -35,7 +36,7 @@ const game = () => {
 
     };
     const winner = (playerChoice, computerChoice) => {
-        //if it is a tie
+        //if it's a tie
         if (playerChoice === computerChoice) {
             const winnerUpdate = document.querySelector(".winner");
             winnerUpdate.textContent = "It is a tie";
@@ -44,48 +45,134 @@ const game = () => {
             const winnerUpdate = document.querySelector(".winner");
             if (computerChoice === "scissors") {
 
-                winnerUpdate.textContent = "Player Wins";
+                winnerUpdate.textContent = "Player Scored";
                 pScore++;
                 document.querySelector(".player p").textContent = pScore;
+                if (pScore === 10) {
+                    reset();
+                }
+
             }
             else {
-                winnerUpdate.textContent = "Computer Wins";
+                winnerUpdate.textContent = "Computer Scored";
                 cScore++;
                 document.querySelector(".computer p").textContent = cScore;
+                if (cScore === 10) {
+                    reset();
+                }
+
             }
         }
         else if (playerChoice === "paper") {
             const winnerUpdate = document.querySelector(".winner");
             if (computerChoice === "rock") {
 
-                winnerUpdate.textContent = "Player Wins";
+                winnerUpdate.textContent = "Player Scored";
                 pScore++;
                 document.querySelector(".player p").textContent = pScore;
+                if (pScore === 10) {
+                    reset();
+                }
+
             }
             else {
-                winnerUpdate.textContent = "Computer Wins";
+                winnerUpdate.textContent = "Computer Scored";
                 cScore++;
                 document.querySelector(".computer p").textContent = cScore;
+                if (cScore === 10) {
+                    reset();
+
+                }
+
             }
         }
         else if (playerChoice === "scissors") {
             const winnerUpdate = document.querySelector(".winner");
             if (computerChoice === "paper") {
 
-                winnerUpdate.textContent = "Player Wins";
+                winnerUpdate.textContent = "Player Scored";
                 pScore++;
                 document.querySelector(".player p").textContent = pScore;
+
+                if (pScore === 10) {
+                    reset();
+                }
+
             }
             else {
-                winnerUpdate.textContent = "Computer Wins";
+                winnerUpdate.textContent = "Computer Scored";
                 cScore++;
                 document.querySelector(".computer p").textContent = cScore;
+                if (cScore === 10) {
+                    reset();
+                }
+
             }
         }
 
     }
+    const reset = () => {
+        if (pScore === 10) {
+            const winnerUpdate = document.querySelector(".winner");
+            const modal = document.querySelector(".modal");
+            const newgamebtn = document.querySelector(".modal-body button");
+            const span = document.getElementsByClassName("close")[0];
+            winnerUpdate.textContent = "Player wins";
+            //disable btn clicks
+            document.querySelector(".options").classList.add("avoid-clicks");
+            //update modal Text
+            document.querySelector(".modal h4").textContent = "You Won The Game"
+            // When the user clicks the button, open the modal
+            modal.style.display = "block";
+            // When the user clicks on <span> (x), close the modal
+            span.addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+            // When the user clicks anywhere outside of the modal, close it
+            window.addEventListener("click", (event) => {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+            //when uer click new game
+            newgamebtn.addEventListener("click", () => {
+                location.reload();
+            })
+
+
+        }
+        else {
+            const winnerUpdate = document.querySelector(".winner");
+            const modal = document.querySelector(".modal");
+            const newgamebtn = document.querySelector(".modal-body button");
+            const span = document.getElementsByClassName("close")[0];
+            winnerUpdate.textContent = "Computer Wins";
+            //disable btn clicks
+            document.querySelector(".options").classList.add("avoid-clicks");
+            // When the user clicks the button, open the modal 
+            modal.style.display = "block";
+            // When the user clicks on <span> (x), close the modal
+            span.addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+            // When the user clicks anywhere outside of the modal, close it
+            window.addEventListener("click", (event) => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+            //when uer click new game
+            newgamebtn.addEventListener("click", () => {
+                location.reload();
+            });
+        }
+    }
+    const newGame = () => {
+
+    }
     showMatch();
     playmatch();
+
 
 
 };
