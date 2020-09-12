@@ -23,9 +23,9 @@ const game = () => {
             option.addEventListener('click', function () {
                 //random computer choice
                 const computerNumber = Math.floor(Math.random() * 3);
-                let computerChoice = computerOptions[computerNumber];
+                const computerChoice = computerOptions[computerNumber];
                 //to find who wins
-                let flag = winner(option.textContent, computerChoice);
+                winner(option.textContent, computerChoice);
                 //update image
                 playerHand.src = `./assets/${option.textContent}.png`;
                 computerHand.src = `./assets/${computerChoice}.png`;
@@ -111,10 +111,9 @@ const game = () => {
         const modal = document.querySelector(".modal");
         const newgamebtn = document.querySelector(".modal-body button");
         const span = document.getElementsByClassName("close")[0];
-        const reset_value = "rock";
         if (pScore === 10) {
             winnerUpdate.textContent = "Player wins";
-            document.querySelector(".newgame").classList.remove("fadeOut");
+
             //disable btn clicks
             document.querySelector(".options").classList.add("fadeOut");
             //update modal Text
@@ -124,48 +123,35 @@ const game = () => {
             // When the user clicks on <span> (x), close the modal
             span.addEventListener("click", () => {
                 modal.style.display = "none";
-                //reset image to rock
-                playerHand.src = `./assets/${reset_value}.png`;
-                computerHand.src = `./assets/${reset_value}.png`;
+                document.querySelector(".newgame").classList.remove("fadeOut");
             });
             // When the user clicks anywhere outside of the modal, close it
             window.addEventListener("click", (event) => {
                 if (event.target === modal) {
                     modal.style.display = "none";
-                    //reset image to rock
-                    playerHand.src = `./assets/${reset_value}.png`;
-                    computerHand.src = `./assets/${reset_value}.png`;
+                    document.querySelector(".newgame").classList.remove("fadeOut");
+
                 }
             });
-            //when uer click new game
-            newgamebtn.addEventListener("click", () => {
-                location.reload();
-            })
-
-
         }
         else {
             winnerUpdate.textContent = "Computer Wins";
-            //new game button
-            document.querySelector(".newgame").classList.remove("fadeOut");
-            //disable btn clicks
+            //disable option btns
             document.querySelector(".options").classList.add("fadeOut");
             // open the modal 
             modal.style.display = "block";
             // When the user clicks on <span> (x), close the modal
             span.addEventListener("click", () => {
                 modal.style.display = "none";
-                /* //reset image to rock
-                   playerHand.src = `./assets/${reset_value}.png`;
-                   computerHand.src = `./assets/${reset_value}.png`;*/
+                document.querySelector(".newgame").classList.remove("fadeOut");
+
             });
             // When the user clicks anywhere outside of the modal, close it
             window.addEventListener("click", (event) => {
                 if (event.target == modal) {
                     modal.style.display = "none";
-                    /* //reset image to rock
-                     playerHand.src = `./assets/${reset_value}.png`;
-                     computerHand.src = `./assets/${reset_value}.png`;*/
+                    document.querySelector(".newgame").classList.remove("fadeOut");
+
                 }
             });
         }
