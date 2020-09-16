@@ -19,18 +19,26 @@ const game = () => {
         const computerHand = document.querySelector(".computer-hand");
         //computer options
         const computerOptions = ["rock", "paper", "scissors"];
-        options.forEach((option) => {
+        options.forEach(option => {
             option.addEventListener('click', function () {
                 //random computer choice
                 const computerNumber = Math.floor(Math.random() * 3);
                 const computerChoice = computerOptions[computerNumber];
-                //to find who wins
-                winner(option.textContent, computerChoice);
-                //update image
-                playerHand.src = `./assets/${option.textContent}.png`;
-                computerHand.src = `./assets/${computerChoice}.png`;
-            })
-        })
+                setTimeout(() => {
+                    //to find who wins
+                    winner(option.textContent, computerChoice);
+                    //update image
+                    playerHand.src = `./assets/${option.textContent}.png`;
+                    computerHand.src = `./assets/${computerChoice}.png`;
+                    playerHand.style.animation = "";
+                    computerHand.style.animation = "";
+
+                }, 2000);
+                //animation
+                handanimation();
+
+            });
+        });
 
 
     };
@@ -162,6 +170,13 @@ const game = () => {
         newgamebtn.addEventListener("click", () => {
             location.reload();
         });
+    }
+    const handanimation = () => {
+        const playerHand = document.querySelector(".player-hand");
+        const computerHand = document.querySelector(".computer-hand");
+        playerHand.style.animation = "shakePlayer 2s ease";
+        computerHand.style.animation = "shakeComputer 2s ease";
+
     }
     showMatch();
     playmatch();
