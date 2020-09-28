@@ -33,7 +33,7 @@ const game = () => {
                     playerHand.style.animation = "";
                     computerHand.style.animation = "";
 
-                }, 2000);
+                }, 1999);
                 //animation
                 handanimation();
 
